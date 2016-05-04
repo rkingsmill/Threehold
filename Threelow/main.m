@@ -11,13 +11,16 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+//        
+//        NSArray<Dice*> *dice = @[ [[Dice alloc]init],
+//                                  [[Dice alloc]init],
+//                                  [[Dice alloc]init],
+//                                  [[Dice alloc]init],
+//                                  [[Dice alloc]init],
+//                                  ];
         
-        NSArray<Dice*> *dice = @[ [[Dice alloc]init],
-                                  [[Dice alloc]init],
-                                  [[Dice alloc]init],
-                                  [[Dice alloc]init],
-                                  [[Dice alloc]init],
-                                  ];
+//        NSMutableArray<Dice*> *holdDice = [[Dice alloc]init];
+//        
         
         while (true) {
             
@@ -28,15 +31,17 @@ int main(int argc, const char * argv[]) {
         playerRolled = [playerRolled stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             
         if ([playerRolled isEqualToString:@"roll"]) {
+            
+        [GameController roll];
                 
-        for (Dice *die in dice) {
-            [die rollDice];
-        }
-
-        
-        for (int idx = 0; idx < [dice count]; idx++) {
-            NSLog(@"Die %d = %ld", idx + 1, dice[idx].diceValue);
-        }
+//        for (Dice *die in dice) {
+//            [die rollDice];
+//        }
+//
+//        
+//        for (int idx = 0; idx < [dice count]; idx++) {
+//            NSLog(@"Die %d = %ld", idx + 1, dice[idx].diceValue);
+//        }
         }
         }
        
