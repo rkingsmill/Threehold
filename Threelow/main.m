@@ -30,16 +30,23 @@ int main(int argc, const char * argv[]) {
         [gameController roll];
             
         }
-            printf("Which dice do you want to hold?");
+            while (true) {
+            printf("Which dice do you want to hold? (Type 'q' when you are done holding dice)");
+            
             fgets(inputChars, 10, stdin);
             NSString *playerHolds = [NSString stringWithUTF8String:inputChars];
             playerHolds = [playerHolds stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             
+//
             [gameController holdDie:[playerHolds integerValue]];
             
-//            if (playerHolds){
-//                
-//            }
+                if ([playerHolds isEqualToString:@"q"]) {
+                    
+                }
+                
+            }
+          
+         
         }
        
     }

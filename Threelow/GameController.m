@@ -45,13 +45,17 @@
     //remove object in Dice array
     [self.dice removeObjectAtIndex:diceIndex];
     
-    int (long)count = [_heldDice count];
-    NSInteger score = 0;
-    for (int i = 0; i < count; i++)
-        {
-            score += [[_heldDice objectAtIndex:i] integerValue];
-        }
-    NSLog (@"Your score is:%ld", score);
+    int i, score, value;
+    score = 0;
+    value = 0;
+    
+    for (i = 0; i < [_heldDice count]; i++)
+    {
+        value = (int)[[_heldDice objectAtIndex: i] diceValue];
+        score += value;
+    }
+    
+    NSLog (@"Your score is:%d", score);
 }
 
 
