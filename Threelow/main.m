@@ -7,11 +7,39 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Dice.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        NSArray<Dice*> *dice = @[ [[Dice alloc]init],
+                                  [[Dice alloc]init],
+                                  [[Dice alloc]init],
+                                  [[Dice alloc]init],
+                                  [[Dice alloc]init],
+                                  ];
+        
+        while (true) {
+            
+        char inputChars[10];
+        printf("Type 'roll' to roll the dice");
+        fgets(inputChars, 10, stdin);
+        NSString *playerRolled = [NSString stringWithUTF8String:inputChars];
+        playerRolled = [playerRolled stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            
+        if ([playerRolled isEqualToString:@"roll"]) {
+                
+        for (Dice *die in dice) {
+            [die rollDice];
+        }
+
+        
+        for (int idx = 0; idx < [dice count]; idx++) {
+            NSLog(@"Die %d = %ld", idx + 1, dice[idx].diceValue);
+        }
+        }
+        }
+       
     }
     return 0;
 }
