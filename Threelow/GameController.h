@@ -11,10 +11,11 @@
 
 @interface GameController : NSObject
 
-@property (strong, nonatomic) NSArray *dice;
+@property (strong, nonatomic) NSMutableArray *dice;
 @property (strong, nonatomic) NSMutableArray *heldDice;
 
--(void)roll:
--(instancetype)init;
+-(void)roll;
+//-(instancetype)init;
+-(void)holdDie: (NSInteger)whichDie;
 
 @end

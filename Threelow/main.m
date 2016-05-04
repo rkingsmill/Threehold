@@ -8,23 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Dice.h"
+#import "GameController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-//        
-//        NSArray<Dice*> *dice = @[ [[Dice alloc]init],
-//                                  [[Dice alloc]init],
-//                                  [[Dice alloc]init],
-//                                  [[Dice alloc]init],
-//                                  [[Dice alloc]init],
-//                                  ];
+
+        GameController *gameController = [[GameController alloc]init];
         
-//        NSMutableArray<Dice*> *holdDice = [[Dice alloc]init];
-//        
+        char inputChars[10];
         
         while (true) {
             
-        char inputChars[10];
+    
         printf("Type 'roll' to roll the dice");
         fgets(inputChars, 10, stdin);
         NSString *playerRolled = [NSString stringWithUTF8String:inputChars];
@@ -32,17 +27,19 @@ int main(int argc, const char * argv[]) {
             
         if ([playerRolled isEqualToString:@"roll"]) {
             
-        [GameController roll];
-                
-//        for (Dice *die in dice) {
-//            [die rollDice];
-//        }
-//
-//        
-//        for (int idx = 0; idx < [dice count]; idx++) {
-//            NSLog(@"Die %d = %ld", idx + 1, dice[idx].diceValue);
-//        }
+        [gameController roll];
+            
         }
+            printf("Which dice do you want to hold?");
+            fgets(inputChars, 10, stdin);
+            NSString *playerHolds = [NSString stringWithUTF8String:inputChars];
+            playerHolds = [playerHolds stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            
+            [gameController holdDie:[playerHolds integerValue]];
+            
+//            if (playerHolds){
+//                
+//            }
         }
        
     }

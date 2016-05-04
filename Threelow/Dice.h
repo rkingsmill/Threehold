@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) NSInteger diceValue;
 
--(void)rollDice;
+-(void)randomize;
+
 
 @end

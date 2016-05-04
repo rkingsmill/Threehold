@@ -7,7 +7,7 @@
 //
 
 #import "GameController.h"
-#import "Dice.h"
+
 
 @implementation GameController
 
@@ -15,12 +15,12 @@
     
    if (self = [super init])
     
-    _dice = @[[[Dice alloc]init],
+       _dice = [NSMutableArray arrayWithArray:@[[[Dice alloc]init],
                               [[Dice alloc]init],
                               [[Dice alloc]init],
                               [[Dice alloc]init],
                               [[Dice alloc]init],
-                              ];
+                              ]];
     
     _heldDice = [[NSMutableArray alloc]init];
     
@@ -29,14 +29,32 @@
 
 -(void)roll {
     
-    for (Dice *die in dice) {
-        [die rollDice];
-    }
-    
-    
-    for (int idx = 0; idx < [dice count]; idx++) {
-        NSLog(@"Die %d = %ld", idx + 1, dice[idx].diceValue);
+    for (NSInteger idx = 0; idx < self.dice.count; idx++)
+    {
+        Dice *dice = self.dice[idx];
+        [dice randomize];
+        NSLog(@"Die %ld = %ld", (long)idx +1, dice.diceValue);
     }
 }
+
+-(void)holdDie: (NSInteger)whichDie {
+    
+    NSInteger diceIndex = whichDie - 1;
+    //add value to heldDice array
+    [self.heldDice addObject:self.dice[diceIndex]];
+    //remove object in Dice array
+    [self.dice removeObjectAtIndex:diceIndex];
+    
+    int (long)count = [_heldDice count];
+    NSInteger score = 0;
+    for (int i = 0; i < count; i++)
+        {
+            score += [[_heldDice objectAtIndex:i] integerValue];
+        }
+    NSLog (@"Your score is:%ld", score);
+}
+
+
+
 
 @end
